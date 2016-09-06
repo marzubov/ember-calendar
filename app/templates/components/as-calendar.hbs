@@ -8,14 +8,9 @@
 
 {{#as-calendar/timetable
   model=model
-  timeZone=timeZone
-  timeZoneOptions=timeZoneOptions
-  showTimeZoneSearch=showTimeZoneSearch
   timeSlotHeight=timeSlotHeight
-  defaultTimeZoneQuery=defaultTimeZoneQuery
   onNavigateToDay=(action "navigateToDay")
-  onSelectTime=(action "addOccurrence")
-  onChangeTimeZone=(action "changeTimeZone") as |day timetable|}}
+  onSelectTime=(action "addOccurrence") as |day timetable|}}
   <ul class="occurrences">
     {{#if model.isMonthView}}
       {{#each day.shortOccurencesList as |occurrence|}}

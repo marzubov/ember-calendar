@@ -24,8 +24,7 @@ module.exports = function(environment) {
     },
 
     moment: {
-      allowEmpty: true,
-      includeTimezone: 'all'
+      allowEmpty: true
     }
   };
 

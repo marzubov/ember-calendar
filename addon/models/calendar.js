@@ -22,7 +22,6 @@ export default Ember.Object.extend({
   occurrences: null,
   startingDate: null,
   timeSlotDuration: null,
-  timeZone: null,
   occurrencePreview: null,
   type: 'week',
   dayNames: [],
@@ -56,13 +55,11 @@ export default Ember.Object.extend({
   }),
 
   timeSlots: Ember.computed(
-    'timeZone',
     'dayStartingTime',
     'dayEndingTime',
     'timeSlotDuration',
     'showAllHours', function () {
       return TimeSlot.buildDay({
-        timeZone: this.get('timeZone'),
         startingTime: this.get('dayStartingTime'),
         endingTime: this.get('dayEndingTime'),
         duration: this.get('timeSlotDuration'),
@@ -97,12 +94,12 @@ export default Ember.Object.extend({
     return moment(this.get('startingTime')).endOf(this.get('isoType'));
   }),
 
-  period: Ember.computed('startingTime', 'timeZone', 'isoType', function () {
-    return moment(this.get('startingTime')).tz(this.get('timeZone')).startOf(this.get('isoType'));
+  period: Ember.computed('startingTime', 'isoType', function () {
+    return moment(this.get('startingTime')).startOf(this.get('isoType'));
   }),
 
-  _currentPeriod: Ember.computed('timeZone', 'isoType', function () {
-    return moment().tz(this.get('timeZone')).startOf(this.get('isoType'));
+  _currentPeriod: Ember.computed('isoType', function () {
+    return moment().startOf(this.get('isoType'));
   }),
 
   initializeCalendar: Ember.on('init', function () {
@@ -177,6 +174,6 @@ export default Ember.Object.extend({
   },
 
   checkIfDateInPeriod: function (date) {
-    return this.get('period').isSame(moment(date).tz(this.get('timeZone')).startOf(this.get('isoType')));
+    return this.get('period').isSame(moment(date).startOf(this.get('isoType')));
   }
 });

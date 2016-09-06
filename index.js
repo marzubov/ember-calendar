@@ -39,18 +39,9 @@ module.exports = {
       });
     }
 
-    app.import('vendor/ember-calendar/jstz.js', {
-      type: 'vendor',
-      exports: { 'jstz': ['default'] }
-    });
-
     app.import('vendor/ember-calendar/interact.js', {
       type: 'vendor',
       exports: { 'interact': ['default'] }
-    });
-
-    app.import('vendor/jstz.js', {
-      type: 'vendor'
     });
 
     if (app.env === 'test') {

@@ -6,7 +6,6 @@ import OccurrenceProxy from './occurrence-proxy';
 
 export default Calendar.extend({
   component: null,
-  timeZone: Ember.computed.oneWay('component.timeZone'),
   startingTime: computedMoment('component.startingDate'),
   dayStartingTime: computedDuration('component.dayStartingTime'),
   dayEndingTime: computedDuration('component.dayEndingTime'),
